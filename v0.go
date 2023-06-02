@@ -323,8 +323,8 @@ func (s *ESAPIV0) Refresh(name string) (err error) {
 
 func (s *ESAPIV0) NewScroll(indexNames string, scrollTime string, docBufferCount int,query string, slicedId,maxSlicedCount int, fields string) (scroll interface{}, err error) {
 
-        // curl -XGET 'http://es-0.9:9200/_search?search_type=scan&scroll=10m&size=50'
-        url := fmt.Sprintf("%s/%s/_search?search_type=scan&scroll=%s&size=%d", s.Host, indexNames, scrollTime, docBufferCount)
+        // curl -XGET 'http://es-0.9:9200/_search?search_type=query_then_fetch&scroll=10m&size=50'
+        url := fmt.Sprintf("%s/%s/_search?search_type=query_then_fetch&scroll=%s&size=%d", s.Host, indexNames, scrollTime, docBufferCount)
 
         var jsonBody []byte
         if len(query) > 0 || len(fields) > 0 {
